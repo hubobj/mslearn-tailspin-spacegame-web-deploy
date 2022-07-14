@@ -17,6 +17,17 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+- task: PublishBuildArtifacts@1    
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: '即用即付 (d837868e-4679-40ca-ae2b-937588740a78)'
+    appType: 'webAppLinux'
+    WebAppName: 'tailspin-space-game-web-test-26397'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
 - task: PublishBuildArtifacts@1    
   displayName: 'Publish Artifact: drop'
