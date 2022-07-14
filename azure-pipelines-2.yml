@@ -18,10 +18,10 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
-- task: DownloadPipelineArtifact@2
+- task: PublishBuildArtifacts@1    
+  displayName: 'Publish Artifact: drop'
   inputs:
-    buildType: current
-    artifact: 'drop'
+    PathtoPublish: '$(build.artifactstagingdirectory)'
 
 - task: NuGetCommand@2
   inputs:
